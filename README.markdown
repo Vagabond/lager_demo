@@ -24,7 +24,7 @@ Show all the debug messages:
 
 Reset the loglevel because your console is flooding:
 
-    lager:set_loglevel(lager_console_backend, debug).
+    lager:set_loglevel(lager_console_backend, info).
 
 Show all the read-repair operations:
 
@@ -40,7 +40,7 @@ Show all the PUTs against vnode 13:
 
 Show all the keys being read between 500 and 600:
 
-    lager:trace_console([{operation, get}, {key '>', 500}, {key, '<', 600}]).
+    lager:trace_console([{operation, get}, {key, '>', 500}, {key, '<', 600}]).
 
 Trace specific GET/PUT operstions:
 
