@@ -2,7 +2,7 @@ A simple little riak-like application for showing how to use lager tracing.
 
 Compile:
 
-  ./rebar get-deps compile
+    ./rebar get-deps compile
 
 Starting:
 
