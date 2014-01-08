@@ -1,6 +1,6 @@
 -module(lager_demo).
 
--export([start/0, print_record/0, get/1, put/2, loadgen/0, loadgen_stop/0]).
+-export([start/0, print_record/0, get/1, traced_get/1, put/2, traced_put/2, loadgen/0, loadgen_stop/0]).
 
 -record(company, {
           name,
@@ -23,6 +23,13 @@ print_record() ->
 get(Key) when is_integer(Key) ->
     get(reqid(), Key).
 
+traced_get(Key) when is_integer(Key) ->
+    ReqID = reqid(),
+    {ok, Trace} = lager:trace_console([{request, ReqID}]),
+    Res = get(ReqID, Key),
+    lager:stop_trace(Trace),
+    Res.
+
 get(ReqID, Key) ->
     Res = [{P, element(2, lager_demo_worker:get(P, ReqID, Key))} || P <- preflist(Key)],
     %% worst sibling resolution ever
@@ -37,6 +44,13 @@ get(ReqID, Key) ->
 
 put(Key, Value) when is_integer(Key) ->
     put(reqid(), Key, Value).
+
+traced_put(Key, Value) when is_integer(Key) ->
+    ReqID = reqid(),
+    {ok, Trace} = lager:trace_console([{request, ReqID}]),
+    Res = put(ReqID, Key, Value),
+    lager:stop_trace(Trace),
+    Res.
 
 put(ReqID, Key, Value) when is_integer(Key) ->
     _ = [lager_demo_worker:put(P, ReqID, Key, Value) || P <- preflist(Key)],
