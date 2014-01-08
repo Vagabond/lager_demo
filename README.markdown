@@ -6,25 +6,25 @@ Compile:
 
 Starting:
 
-  erl -pa ebin deps/*/ebin -s lager_demo
+```erl -pa ebin deps/*/ebin -s lager_demo```
 
 Things to try:
 
 Prettyprint a record:
 
-  lager_demo:print_record().
+```lager_demo:print_record().```
 
 Start some load:
 
-  lager_demo:loadgen().
+```lager_demo:loadgen().```
 
 Show all the debug messages:
 
-  lager:set_loglevel(lager_console_backend, debug).
+```lager:set_loglevel(lager_console_backend, debug).```
 
 Reset the loglevel because your console is flooding:
 
-  lager:set_loglevel(lager_console_backend, debug).
+```lager:set_loglevel(lager_console_backend, debug).```
 
 Show all the read-repair operations:
 
