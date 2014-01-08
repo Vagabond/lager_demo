@@ -1,0 +1,10 @@
+{application, lager_demo, [
+    {description, "CRASH ALL THE THINGS"},
+    {vsn, "0.0.0"},
+    {applications, [kernel, stdlib, lager]},
+    {mod,{lager_demo_app,[]}},
+    {registered, []},
+    {env, [
+      {ring_size, 32}
+    ]}
+]}.
